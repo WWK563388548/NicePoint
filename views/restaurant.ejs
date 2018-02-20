@@ -1,0 +1,11 @@
+<% include partials/header.ejs %>
+
+<h1>This is a Restaurant page</h1>
+<% restaurantDatas.forEach(function(restaurant){ %>
+    <div>
+        <h4><%= restaurant.name %></h4>
+        <img src="<%= restaurant.image %>" alt="picture">
+    </div>
+<% }); %>
+
+<% include partials/footer.ejs %>
