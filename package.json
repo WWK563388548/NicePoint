@@ -1,0 +1,24 @@
+{
+  "name": "nicepoint",
+  "version": "1.0.0",
+  "description": "A web application that can make people to choose nice chinese restaurant in Tokyo/Japan",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WWK563388548/NicePoint.git"
+  },
+  "author": "wwk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WWK563388548/NicePoint/issues"
+  },
+  "homepage": "https://github.com/WWK563388548/NicePoint#readme",
+  "dependencies": {
+    "cat-me": "^1.0.3",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2"
+  }
+}
