@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/WWK563388548/NicePoint#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "cat-me": "^1.0.3",
     "ejs": "^2.5.7",
     "express": "^4.16.2"

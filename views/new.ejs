@@ -1,0 +1,11 @@
+<% include partials/header.ejs %>
+
+<h1>Create a new restaurant</h1>
+
+<form action="/restaurants" method="POST">
+    <input type="text" placeholder="Name of restaurant" name="restaurantName">
+    <input type="text" placeholder="Url of image" name="imageUrl">
+    <button>Submit</button>
+</form>
+
+<% include partials/footer.ejs %>
