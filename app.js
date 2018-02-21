@@ -40,6 +40,10 @@ app.get("/restaurants/new", function(req, res){
     res.render("new");
 });
 
+app.get("*", function(req, res){
+    res.send("404 ---- not found error");
+});
+
 app.listen("8888", function(){
     console.log("The NicePoint server has started!");
     console.log(catMe('nyan'));

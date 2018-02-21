@@ -1,11 +1,16 @@
 <% include partials/header.ejs %>
 
 <h1>This is a Restaurant page</h1>
+
+<a href="/restaurants/new">Add new restaurant</a>
+
 <% restaurantDatas.forEach(function(restaurants){ %>
     <div>
         <h4><%= restaurants.name %></h4>
         <img src="<%= restaurants.image %>" alt="picture" height="300" width="300">
     </div>
 <% }); %>
+
+<a href="/restaurants">Go back</a>
 
 <% include partials/footer.ejs %>
