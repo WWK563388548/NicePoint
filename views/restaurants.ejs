@@ -1,16 +1,29 @@
 <% include partials/header.ejs %>
 
-<h1>This is a Restaurant page</h1>
+    <div class="container">
+        <header class="jumbotron">
+            <div class="container">
+                <h1>欢迎来到NicePoint</h1>
+                <p>你可以在这里找到并评论全东京最正宗的中餐馆！</p>
+                <p>
+                    <a class="btn btn-primary btn-lg" href="/restaurants/new">添加新的餐馆</a>
+                </p>
+            </div>
+        </header>
 
-<a href="/restaurants/new">Add new restaurant</a>
+        <div class="row text-center" style="display: flex; flex-wrap:wrap">
+            <% restaurantDatas.forEach(function(restaurants){ %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h4><%= restaurants.name %></h4>
+                        </div>
+                        <img src="<%= restaurants.image %>" alt="picture">
+                    </div>
+                </div>
+            <% }); %>
+        </div>
 
-<% restaurantDatas.forEach(function(restaurants){ %>
-    <div>
-        <h4><%= restaurants.name %></h4>
-        <img src="<%= restaurants.image %>" alt="picture" height="300" width="300">
     </div>
-<% }); %>
-
-<a href="/restaurants">Go back</a>
 
 <% include partials/footer.ejs %>
