@@ -11,17 +11,19 @@ app.set("view engine", "ejs");
 // SCHEMA setup
 var restaurantSchema = new mongoose.Schema({
     restaurantName: String,
-    restaurantImage: String
+    restaurantImage: String,
+    description: String
 });
 
 // Compile schema to a model
 var Restaurant = mongoose.model("Restaurant", restaurantSchema);
 
 // Create data
-/* Restaurant.create(
+/*Restaurant.create(
     {
         restaurantName: "四川麻辣烫",
-        restaurantImage: "https://tabelog.com/imgview/original?id=r1568448456758"
+        restaurantImage: "https://tabelog.com/imgview/original?id=r1568448456758",
+        description: "可以加的东西很多，还有很多国内的饮料，比如冰红茶，但是价格小贵，人均1500-2000円左右。"
     }, function(err, restaurant){
         if(err){
             console.log("Error: " + err);
@@ -29,23 +31,19 @@ var Restaurant = mongoose.model("Restaurant", restaurantSchema);
             console.log("New restaurant added!");
             console.log(restaurant);
         }
-    }); */
-
-// Create some fake data
-var restaurantDatas = [
-    {name: "海底捞", image: "https://uds.gnst.jp/rest/img/ba11tssh0000/s_0n5c.jpg?t=1500467047"},
-    {name: "永祥生煎", image: "http://www.ei-show.com/img/ikebukuroimg003.jpg"},
-    {name: "海底捞", image: "https://uds.gnst.jp/rest/img/ba11tssh0000/s_0n5c.jpg?t=1500467047"},
-    {name: "永祥生煎", image: "http://www.ei-show.com/img/ikebukuroimg003.jpg"},
-    {name: "海底捞", image: "https://uds.gnst.jp/rest/img/ba11tssh0000/s_0n5c.jpg?t=1500467047"},
-    {name: "永祥生煎", image: "http://www.ei-show.com/img/ikebukuroimg003.jpg"}
-];
+    });*/
 
 // Create a landing page
 app.get("/", function(req, res){
     res.render("landingPage");
 });
 
+// This is a INDEX route(RESTFUL route)
+/**
+ * url: /restaurants
+ * verb: GET
+ * function: Display a list of restaurant
+ */
 // Create a restaurant page
 app.get("/restaurants", function(req, res){
     // Get all datas from DB
@@ -53,17 +51,24 @@ app.get("/restaurants", function(req, res){
         if(err){
             console.log("Error: " + err);
         } else {
-            res.render("restaurants", {restaurantDatas: allRestaurants});
+            res.render("index", {restaurantDatas: allRestaurants});
         }
     });
 });
 
+// This is a CREATE route(RESTFUL route)
+/**
+ * url: /restaurants
+ * verb: POST
+ * function: Add new restaurant to DB
+ */
 // Create a Post route
 app.post("/restaurants", function(req, res){
     // Get data from forms and add to restaurant array
     var restaurantName = req.body.restaurantName;
     var imageUrl = req.body.imageUrl;
-    var newRestaurant = {restaurantName: restaurantName, restaurantImage: imageUrl};
+    var desc = req.body.description;
+    var newRestaurant = {restaurantName: restaurantName, restaurantImage: imageUrl, description: desc};
     // Create a new restaurant and save to DB
     Restaurant.create(newRestaurant, function(err, newlyCreated){
         if(err){
@@ -75,12 +80,31 @@ app.post("/restaurants", function(req, res){
     }); 
 });
 
+// This is a NEW route(RESTFUL route)
+/**
+ * url: /restaurants/new
+ * verb: GET
+ * function: Show form to create new restaurant
+ */
 app.get("/restaurants/new", function(req, res){
     res.render("new");
 });
 
-app.get("*", function(req, res){
-    res.send("404 ---- not found error");
+// This is a SHOW route(RESTFUL route)
+/**
+ * url: /restaurants/:id
+ * verb: GET
+ * function: Show information about a restaurant when click them in homepage
+ */
+app.get("/restaurants/:id", function(req, res){
+    // find the restaurant with provided id
+    Restaurant.findById(req.params.id, function(err, foundRestaurant){
+        if(err){
+            console.log("Error: " + err);
+        } else {
+            res.render("showPage", {restaurant: foundRestaurant});
+        }
+    });
 });
 
 app.listen("8888", function(){
