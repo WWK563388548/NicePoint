@@ -1,12 +1,21 @@
 <% include partials/header.ejs %>
-
-<h1>Create a new restaurant</h1>
-
-<form action="/restaurants" method="POST">
-    <input type="text" placeholder="Name of restaurant" name="restaurantName">
-    <input type="text" placeholder="Url of image" name="imageUrl">
-    <button>Submit</button>
-</form>
-<a href="/restaurants">Go back</a>
-
+    <div class="container">
+        <div class="row"> 
+            <h1 style="text-align:center;">添加新的餐馆／中华物产店</h1>
+            <div class="" style="width: 30%; margin: 25px auto;">
+                <form action="/restaurants" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Name of restaurant" name="restaurantName">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Url of image" name="imageUrl">    
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block">上传</button>
+                    </div>
+                </form>
+                <a href="/restaurants">返回</a>
+            </div>
+        </div>
+    </div>
 <% include partials/footer.ejs %>
