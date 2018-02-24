@@ -15,10 +15,10 @@
             <% restaurantDatas.forEach(function(restaurants){ %>
                 <div class="col-md-3 col-sm-6">
                     <div class="thumbnail">
+                        <img src="<%= restaurants.restaurantImage %>" alt="picture">
                         <div class="caption">
-                            <h4><%= restaurants.name %></h4>
+                                <h4><%= restaurants.restaurantName %></h4>
                         </div>
-                        <img src="<%= restaurants.image %>" alt="picture">
                     </div>
                 </div>
             <% }); %>

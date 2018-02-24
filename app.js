@@ -1,29 +1,45 @@
 var express = require("express");
 var catMe = require("cat-me");
 var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
 
+mongoose.connect("mongodb://localhost/RedPoint");
 var app = express();
-// Create some fake data
-var restaurantDatas = [
-    {name: "小魏鸭脖", image: "https://tabelog.com/imgview/original?id=r9811028397831"},
-    {name: "麻辣诱惑", image: "https://tabelog.com/imgview/original?id=r4034029493732"},
-    {name: "海底捞", image: "https://uds.gnst.jp/rest/img/ba11tssh0000/s_0n5c.jpg?t=1500467047"},
-    {name: "四川麻辣烫", image: "https://tabelog.com/imgview/original?id=r1568448456758"},
-    {name: "永祥生煎", image: "http://www.ei-show.com/img/ikebukuroimg003.jpg"},
-    {name: "小魏鸭脖", image: "https://tabelog.com/imgview/original?id=r9811028397831"},
-    {name: "麻辣诱惑", image: "https://tabelog.com/imgview/original?id=r4034029493732"},
-    {name: "海底捞", image: "https://uds.gnst.jp/rest/img/ba11tssh0000/s_0n5c.jpg?t=1500467047"},
-    {name: "四川麻辣烫", image: "https://tabelog.com/imgview/original?id=r1568448456758"},
-    {name: "永祥生煎", image: "http://www.ei-show.com/img/ikebukuroimg003.jpg"},
-    {name: "小魏鸭脖", image: "https://tabelog.com/imgview/original?id=r9811028397831"},
-    {name: "麻辣诱惑", image: "https://tabelog.com/imgview/original?id=r4034029493732"},
-    {name: "海底捞", image: "https://uds.gnst.jp/rest/img/ba11tssh0000/s_0n5c.jpg?t=1500467047"},
-    {name: "四川麻辣烫", image: "https://tabelog.com/imgview/original?id=r1568448456758"},
-    {name: "永祥生煎", image: "http://www.ei-show.com/img/ikebukuroimg003.jpg"}
-];
-
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+
+// SCHEMA setup
+var restaurantSchema = new mongoose.Schema({
+    restaurantName: String,
+    restaurantImage: String
+});
+
+// Compile schema to a model
+var Restaurant = mongoose.model("Restaurant", restaurantSchema);
+
+// Create data
+/* Restaurant.create(
+    {
+        restaurantName: "四川麻辣烫",
+        restaurantImage: "https://tabelog.com/imgview/original?id=r1568448456758"
+    }, function(err, restaurant){
+        if(err){
+            console.log("Error: " + err);
+        }else{
+            console.log("New restaurant added!");
+            console.log(restaurant);
+        }
+    }); */
+
+// Create some fake data
+var restaurantDatas = [
+    {name: "海底捞", image: "https://uds.gnst.jp/rest/img/ba11tssh0000/s_0n5c.jpg?t=1500467047"},
+    {name: "永祥生煎", image: "http://www.ei-show.com/img/ikebukuroimg003.jpg"},
+    {name: "海底捞", image: "https://uds.gnst.jp/rest/img/ba11tssh0000/s_0n5c.jpg?t=1500467047"},
+    {name: "永祥生煎", image: "http://www.ei-show.com/img/ikebukuroimg003.jpg"},
+    {name: "海底捞", image: "https://uds.gnst.jp/rest/img/ba11tssh0000/s_0n5c.jpg?t=1500467047"},
+    {name: "永祥生煎", image: "http://www.ei-show.com/img/ikebukuroimg003.jpg"}
+];
 
 // Create a landing page
 app.get("/", function(req, res){
@@ -32,7 +48,14 @@ app.get("/", function(req, res){
 
 // Create a restaurant page
 app.get("/restaurants", function(req, res){
-    res.render("restaurants", {restaurantDatas: restaurantDatas});
+    // Get all datas from DB
+    Restaurant.find({}, function(err, allRestaurants){
+        if(err){
+            console.log("Error: " + err);
+        } else {
+            res.render("restaurants", {restaurantDatas: allRestaurants});
+        }
+    });
 });
 
 // Create a Post route
@@ -40,10 +63,16 @@ app.post("/restaurants", function(req, res){
     // Get data from forms and add to restaurant array
     var restaurantName = req.body.restaurantName;
     var imageUrl = req.body.imageUrl;
-    var newRestaurant = {name: restaurantName, image: imageUrl};
-    restaurantDatas.push(newRestaurant);
-    // Redirect back to /restaurant page
-    res.redirect("/restaurants");
+    var newRestaurant = {restaurantName: restaurantName, restaurantImage: imageUrl};
+    // Create a new restaurant and save to DB
+    Restaurant.create(newRestaurant, function(err, newlyCreated){
+        if(err){
+            console.log("Error: " + err);
+        } else {
+            // Redirect back to /restaurant page
+            res.redirect("/restaurants");
+        }
+    }); 
 });
 
 app.get("/restaurants/new", function(req, res){
