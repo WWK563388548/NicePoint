@@ -100,6 +100,18 @@ app.get("/restaurants/:id", function(req, res){
     });
 });
 
+// Comment route
+app.get("/restaurants/:id/comments/new", function(req, res){
+    // find restaurant by id
+    Restaurant.findById(req.params.id, function(err, restaurant){
+        if(err){
+            console.log("Error: " + err);
+        } else {
+            res.render("newComment", {restaurant: restaurant});
+        }
+    });
+});
+
 app.listen("8888", function(){
     console.log("The NicePoint server has started!");
     console.log(catMe('nyan'));
