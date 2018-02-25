@@ -2,21 +2,14 @@ var express = require("express");
 var catMe = require("cat-me");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var Restaurant = require("./models/restaurant");
+var seedDB = require("./seeds");
 
+seedDB();
 mongoose.connect("mongodb://localhost/RedPoint");
 var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
-
-// SCHEMA setup
-var restaurantSchema = new mongoose.Schema({
-    restaurantName: String,
-    restaurantImage: String,
-    description: String
-});
-
-// Compile schema to a model
-var Restaurant = mongoose.model("Restaurant", restaurantSchema);
 
 // Create data
 /*Restaurant.create(
