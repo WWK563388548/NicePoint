@@ -2,4 +2,10 @@
     <h1><%= restaurant.restaurantName%></h1>
     <img src="<%= restaurant.restaurantImage %>">
     <p><%= restaurant.description%></p>
+
+    <% restaurant.comments.forEach(function(comment){ %>
+        <p>
+            <strong><%= comment.author%></strong> - <%= comment.text %>
+        </p>
+    <% }); %>
 <% include partials/footer.ejs %>

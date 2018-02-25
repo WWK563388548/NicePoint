@@ -4,7 +4,13 @@ var mongoose = require("mongoose");
 var restaurantSchema = new mongoose.Schema({
     restaurantName: String,
     restaurantImage: String,
-    description: String
+    description: String,
+    comments: [
+        {
+           type: mongoose.Schema.Types.ObjectId,
+           ref: "Comment"
+        }
+    ]
 });
 
 // Compile schema to a model
