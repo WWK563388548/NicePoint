@@ -3,6 +3,10 @@
     <img src="<%= restaurant.restaurantImage %>">
     <p><%= restaurant.description%></p>
 
+    <p>
+        <a class="btn btn-success" href="/restaurants/<%= restaurant._id %>/comments/new">添加评论</a>
+    </p>
+
     <% restaurant.comments.forEach(function(comment){ %>
         <p>
             <strong><%= comment.author%></strong> - <%= comment.text %>

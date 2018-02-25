@@ -3,6 +3,7 @@ var catMe = require("cat-me");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var Restaurant = require("./models/restaurant");
+var Comment = require("./models/comment");
 var seedDB = require("./seeds");
 
 mongoose.connect("mongodb://localhost/RedPoint");
@@ -100,7 +101,7 @@ app.get("/restaurants/:id", function(req, res){
     });
 });
 
-// Comment route
+// Add Comment route
 app.get("/restaurants/:id/comments/new", function(req, res){
     // find restaurant by id
     Restaurant.findById(req.params.id, function(err, restaurant){
@@ -108,6 +109,29 @@ app.get("/restaurants/:id/comments/new", function(req, res){
             console.log("Error: " + err);
         } else {
             res.render("newComment", {restaurant: restaurant});
+        }
+    });
+});
+
+app.post("/restaurants/:id/comments", function(req, res){
+    // look up restaurant by id
+    Restaurant.findById(req.params.id, function(err, restaurant){
+        if(err){
+            console.log(err);
+            res.redirect("/restaurants");
+        } else {
+            // create new comment
+            Comment.create(req.body.comment, function(err, comment){
+                if(err){
+                    console.log(err);
+                } else {
+                    // connect new comment to restaurant
+                    restaurant.comments.push(comment);
+                    restaurant.save();
+                    // redirect show page
+                    res.redirect("/restaurants/" + restaurant._id);
+                }
+            });
         }
     });
 });
