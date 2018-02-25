@@ -5,11 +5,11 @@ var mongoose = require("mongoose");
 var Restaurant = require("./models/restaurant");
 var seedDB = require("./seeds");
 
-seedDB();
 mongoose.connect("mongodb://localhost/RedPoint");
 var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+seedDB();
 
 // Create data
 /*Restaurant.create(

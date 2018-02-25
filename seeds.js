@@ -40,7 +40,7 @@ function seedDB() {
                             }else{
                                 restaurant.comments.push(comment._id);
                                 restaurant.save();
-                                cnosole.log("Created new comment.");
+                                console.log("Created new comment.");
                             }
                         });
                 }
