@@ -21,16 +21,25 @@
                             <p><%= restaurant.description%></p>
                         </div>
                 </div>
+                <div class="well">
+                    <div class="text-right">
+                        <a class="btn btn-success" href="/restaurants/<%= restaurant._id %>/comments/new">添加评论</a>
+                    </div>
+                    <hr>
+                    <% restaurant.comments.forEach(function(comment){ %>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <%= comment.author%>
+                                <span class="pull-right">1天前</span>
+                                <p>
+                                    <%= comment.text %>
+                                </p>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
             </div>
         </div>
     </div>
-        <p>
-            <a class="btn btn-success" href="/restaurants/<%= restaurant._id %>/comments/new">添加评论</a>
-        </p>
-
-        <% restaurant.comments.forEach(function(comment){ %>
-            <p>
-                <strong><%= comment.author%></strong> - <%= comment.text %>
-            </p>
-        <% }); %>
+       
 <% include partials/footer.ejs %>
