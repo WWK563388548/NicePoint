@@ -2,8 +2,11 @@ var express = require("express");
 var catMe = require("cat-me");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var passport = require("passport");
+var localStrategy = require("passport-local");
 var Restaurant = require("./models/restaurant");
 var Comment = require("./models/comment");
+var User = require("./models/user");
 var seedDB = require("./seeds");
 
 mongoose.connect("mongodb://localhost/RedPoint");
