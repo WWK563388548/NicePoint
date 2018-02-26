@@ -1,15 +1,36 @@
 <% include partials/header.ejs %>
-    <h1><%= restaurant.restaurantName%></h1>
-    <img src="<%= restaurant.restaurantImage %>">
-    <p><%= restaurant.description%></p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="lead">RedPoint</p>
+                <div class="list-group">
+                    <li class="list-group-item active">Info 1</li>
+                    <li class="list-group-item">Info 2</li>
+                    <li class="list-group-item">Info 3</li>
+                </div>
+            </div>
 
-    <p>
-        <a class="btn btn-success" href="/restaurants/<%= restaurant._id %>/comments/new">添加评论</a>
-    </p>
-
-    <% restaurant.comments.forEach(function(comment){ %>
+            <div class="col-md-9">
+                <div class="thumbnail">
+                        <img class="img-responsive" src="<%= restaurant.restaurantImage %>">
+                        <div class="caption-full">
+                            <h4 class="pull-right">
+                                ￥2000-3000／人
+                            </h4>
+                            <h2><a><%= restaurant.restaurantName%></a></h2>
+                            <p><%= restaurant.description%></p>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
         <p>
-            <strong><%= comment.author%></strong> - <%= comment.text %>
+            <a class="btn btn-success" href="/restaurants/<%= restaurant._id %>/comments/new">添加评论</a>
         </p>
-    <% }); %>
+
+        <% restaurant.comments.forEach(function(comment){ %>
+            <p>
+                <strong><%= comment.author%></strong> - <%= comment.text %>
+            </p>
+        <% }); %>
 <% include partials/footer.ejs %>
