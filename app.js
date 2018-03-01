@@ -28,6 +28,13 @@ passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// if user logged in then return username
+// otherwise, return  undefined
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    next();
+});
+
 // Create data
 /*Restaurant.create(
     {
@@ -61,6 +68,7 @@ app.get("/restaurants", function(req, res){
         if(err){
             console.log("Error: " + err);
         } else {
+            // console.log(req.user);
             res.render("index", {restaurantDatas: allRestaurants});
         }
     });
