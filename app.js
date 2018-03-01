@@ -171,6 +171,20 @@ app.post("/register", function(req, res){
     });
 });
 
+// Show login form
+app.get("/login", function(req, res){
+    res.render("login");
+});
+// handle login logic
+// app.post("/login", middleware, callback)
+app.post("/login",passport.authenticate("local", 
+    {
+        successRedirect: "/restaurants",
+        failureRedirect: "/login"
+    }), function(req, res){
+
+});
+
 app.listen("8888", function(){
     console.log("The NicePoint server has started!");
     console.log(catMe('nyan'));
