@@ -171,6 +171,7 @@ app.post("/register", function(req, res){
     });
 });
 
+// add login route
 // Show login form
 app.get("/login", function(req, res){
     res.render("login");
@@ -183,6 +184,12 @@ app.post("/login",passport.authenticate("local",
         failureRedirect: "/login"
     }), function(req, res){
 
+});
+
+// add logout route
+app.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/restaurants");
 });
 
 app.listen("8888", function(){
