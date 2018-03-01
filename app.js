@@ -118,7 +118,8 @@ app.get("/restaurants/:id", function(req, res){
 });
 
 // Add Comment route
-app.get("/restaurants/:id/comments/new", function(req, res){
+// add a middleware isLoggedIn()
+app.get("/restaurants/:id/comments/new",isLoggedIn, function(req, res){
     // find restaurant by id
     Restaurant.findById(req.params.id, function(err, restaurant){
         if(err){
@@ -191,6 +192,16 @@ app.get("/logout", function(req, res){
     req.logout();
     res.redirect("/restaurants");
 });
+
+// add a middleware to check whether users logged in
+// when users logged in, they can comment restaurant
+// otherwise, redirect to login page
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 app.listen("8888", function(){
     console.log("The NicePoint server has started!");
