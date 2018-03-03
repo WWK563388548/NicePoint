@@ -44,7 +44,7 @@ router.post("/", isLoggedIn, function(req, res){
             console.log("Error: " + err);
         } else {
             // Redirect back to /restaurant page
-            console.log(newlyCreated);
+            // console.log(newlyCreated);
             res.redirect("/restaurants");
         }
     }); 
