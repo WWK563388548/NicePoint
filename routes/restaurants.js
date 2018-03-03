@@ -28,7 +28,7 @@ router.get("/", function(req, res){
  * function: Add new restaurant to DB
  */
 // Create a Post route
-router.post("/", function(req, res){
+router.post("/", isLoggedIn, function(req, res){
     // Get data from forms and add to restaurant array
     var restaurantName = req.body.restaurantName;
     var imageUrl = req.body.imageUrl;
@@ -51,7 +51,7 @@ router.post("/", function(req, res){
  * verb: GET
  * function: Show form to create new restaurant
  */
-router.get("/new", function(req, res){
+router.get("/new", isLoggedIn, function(req, res){
     res.render("new");
 });
 
@@ -71,5 +71,13 @@ router.get("/:id", function(req, res){
         }
     });
 });
+
+// middleware
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 module.exports = router;
