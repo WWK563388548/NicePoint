@@ -17,8 +17,11 @@
                             <h4 class="pull-right">
                                 ￥2000-3000／人
                             </h4>
-                            <h2><a><%= restaurant.restaurantName%></a></h2>
-                            <p><%= restaurant.description%></p>
+                            <h2><a><%= restaurant.restaurantName %></a></h2>
+                            <p><%= restaurant.description %></p>
+                            <p>
+                                <em>页面创建者： <%= restaurant.author.username %></em>
+                            </p>
                         </div>
                 </div>
                 <div class="well">
