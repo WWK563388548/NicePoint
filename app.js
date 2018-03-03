@@ -18,7 +18,8 @@ var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
-seedDB();
+// seed the database
+//seedDB();
 
 // passport figuration
 app.use(require("express-session")({

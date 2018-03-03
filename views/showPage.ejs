@@ -29,7 +29,7 @@
                     <% restaurant.comments.forEach(function(comment){ %>
                         <div class="row">
                             <div class="col-md-12">
-                                <%= comment.author%>
+                                <%= comment.author.username %>
                                 <span class="pull-right">1天前</span>
                                 <p>
                                     <%= comment.text %>
