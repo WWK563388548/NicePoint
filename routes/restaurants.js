@@ -88,18 +88,30 @@ router.get("/:id/edit", function(req, res){
     });
 });
 
+// Update restaurant route
 router.put("/:id", function(req, res){
     // find and update the correct restaurant
     Restaurant.findByIdAndUpdate(req.params.id, req.body.restaurant, function(err, updateRestaurant){
+        // redirect the show page 
         if(err){
             res.redirect("/restaurants");
         } else {
             res.redirect("/restaurants/" + req.params.id);
         }
     });
-    // redirect the show page 
 });
-// Update restaurant route
+
+// Destory restaurant route
+router.delete("/:id", function(req, res){
+    Restaurant.findByIdAndRemove(req.params.id, function(err){
+        // redirect the show page 
+        if(err){
+            res.redirect("/restaurants");
+        } else {
+            res.redirect("/restaurants");
+        }
+    });
+});
 
 // middleware
 function isLoggedIn(req, res, next){
