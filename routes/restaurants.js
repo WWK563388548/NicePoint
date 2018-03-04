@@ -78,14 +78,10 @@ router.get("/:id", function(req, res){
 });
 
 // Edit restaurant route
-router.get("/:id/edit", function(req, res){
+router.get("/:id/edit", checkShowPageOwnership, function(req, res){
     Restaurant.findById(req.params.id, function(err, foundRestaurant){
-        if(err){
-            res.redirect("/restaurants");
-        } else {
-            res.render("edit", {restaurant: foundRestaurant});
-        }
-    });
+        res.render("edit", {restaurant: foundRestaurant});     
+    });  
 });
 
 // Update restaurant route
@@ -119,6 +115,28 @@ function isLoggedIn(req, res, next){
         return next();
     }
     res.redirect("/login");
+}
+
+// middleware
+function checkShowPageOwnership(req, res, next){
+    if(req.isAuthenticated()){
+        Restaurant.findById(req.params.id, function(err, foundRestaurant){
+            if(err){
+                res.redirect("back");
+            } else {
+                // Does users own the show page
+                // "foundRestaurant.author.id" is a mongoose object
+                // "req.user._id" is a string
+                if(foundRestaurant.author.id.equals(req.user._id)){
+                    next();
+                } else {
+                    res.redirect("back");
+                }
+            }
+        });
+    } else {
+        res.redirect("back");
+    }
 }
 
 module.exports = router;
