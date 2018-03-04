@@ -85,7 +85,7 @@ router.get("/:id/edit", checkShowPageOwnership, function(req, res){
 });
 
 // Update restaurant route
-router.put("/:id", function(req, res){
+router.put("/:id", checkShowPageOwnership, function(req, res){
     // find and update the correct restaurant
     Restaurant.findByIdAndUpdate(req.params.id, req.body.restaurant, function(err, updateRestaurant){
         // redirect the show page 
@@ -98,7 +98,7 @@ router.put("/:id", function(req, res){
 });
 
 // Destory restaurant route
-router.delete("/:id", function(req, res){
+router.delete("/:id", checkShowPageOwnership, function(req, res){
     Restaurant.findByIdAndRemove(req.params.id, function(err){
         // redirect the show page 
         if(err){
