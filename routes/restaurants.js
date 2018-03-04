@@ -77,6 +77,19 @@ router.get("/:id", function(req, res){
     });
 });
 
+// Edit restaurant route
+router.get("/:id/edit", function(req, res){
+    Restaurant.findById(req.params.id, function(err, foundRestaurant){
+        if(err){
+            res.redirect("/restaurants");
+        } else {
+            res.render("edit", {restaurant: foundRestaurant});
+        }
+    });
+});
+
+// Update restaurant route
+
 // middleware
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
