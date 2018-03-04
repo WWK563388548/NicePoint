@@ -1,7 +1,7 @@
 <% include partials/header.ejs %>
     <div class="container">
         <div class="row"> 
-            <h1 style="text-align:center;">编辑<%= restaurant.restaurantName %>的内容</h1>
+            <h1 style="text-align:center;">编辑 <%= restaurant.restaurantName %> 的内容</h1>
             <div class="" style="width: 30%; margin: 25px auto;">
                 <form action="/restaurants/<%= restaurant._id %>/?_method=PUT" method="POST">
                     <div class="form-group">
