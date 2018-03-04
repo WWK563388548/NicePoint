@@ -88,6 +88,17 @@ router.get("/:id/edit", function(req, res){
     });
 });
 
+router.put("/:id", function(req, res){
+    // find and update the correct restaurant
+    Restaurant.findByIdAndUpdate(req.params.id, req.body.restaurant, function(err, updateRestaurant){
+        if(err){
+            res.redirect("/restaurants");
+        } else {
+            res.redirect("/restaurants/" + req.params.id);
+        }
+    });
+    // redirect the show page 
+});
 // Update restaurant route
 
 // middleware
