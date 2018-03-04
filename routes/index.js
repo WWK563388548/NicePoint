@@ -35,7 +35,7 @@ router.get("/login", function(req, res){
 });
 // handle login logic
 // app.post("/login", middleware, callback)
-router.post("/login",passport.authenticate("local", 
+router.post("/login", passport.authenticate("local", 
     {
         successRedirect: "/restaurants",
         failureRedirect: "/login"
@@ -48,15 +48,5 @@ router.get("/logout", function(req, res){
     req.logout();
     res.redirect("/restaurants");
 });
-
-// add a middleware to check whether users logged in
-// when users logged in, they can comment restaurant
-// otherwise, redirect to login page
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login");
-}
 
 module.exports = router;

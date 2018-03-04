@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Restaurant = require("../models/restaurant");
+var middleware = require("../middleware");
 
 // This is a INDEX route(RESTFUL route)
 /**
@@ -28,7 +29,7 @@ router.get("/", function(req, res){
  * function: Add new restaurant to DB
  */
 // Create a Post route
-router.post("/", isLoggedIn, function(req, res){
+router.post("/", middleware.isLoggedIn, function(req, res){
     // Get data from forms and add to restaurant array
     var restaurantName = req.body.restaurantName;
     var imageUrl = req.body.imageUrl;
@@ -56,7 +57,7 @@ router.post("/", isLoggedIn, function(req, res){
  * verb: GET
  * function: Show form to create new restaurant
  */
-router.get("/new", isLoggedIn, function(req, res){
+router.get("/new", middleware.isLoggedIn, function(req, res){
     res.render("new");
 });
 
@@ -78,14 +79,14 @@ router.get("/:id", function(req, res){
 });
 
 // Edit restaurant route
-router.get("/:id/edit", checkShowPageOwnership, function(req, res){
+router.get("/:id/edit", middleware.checkShowPageOwnership, function(req, res){
     Restaurant.findById(req.params.id, function(err, foundRestaurant){
         res.render("edit", {restaurant: foundRestaurant});     
     });  
 });
 
 // Update restaurant route
-router.put("/:id", checkShowPageOwnership, function(req, res){
+router.put("/:id", middleware.checkShowPageOwnership, function(req, res){
     // find and update the correct restaurant
     Restaurant.findByIdAndUpdate(req.params.id, req.body.restaurant, function(err, updateRestaurant){
         // redirect the show page 
@@ -98,7 +99,7 @@ router.put("/:id", checkShowPageOwnership, function(req, res){
 });
 
 // Destory restaurant route
-router.delete("/:id", checkShowPageOwnership, function(req, res){
+router.delete("/:id", middleware.checkShowPageOwnership, function(req, res){
     Restaurant.findByIdAndRemove(req.params.id, function(err){
         // redirect the show page 
         if(err){
@@ -108,35 +109,5 @@ router.delete("/:id", checkShowPageOwnership, function(req, res){
         }
     });
 });
-
-// middleware
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login");
-}
-
-// middleware
-function checkShowPageOwnership(req, res, next){
-    if(req.isAuthenticated()){
-        Restaurant.findById(req.params.id, function(err, foundRestaurant){
-            if(err){
-                res.redirect("back");
-            } else {
-                // Does users own the show page
-                // "foundRestaurant.author.id" is a mongoose object
-                // "req.user._id" is a string
-                if(foundRestaurant.author.id.equals(req.user._id)){
-                    next();
-                } else {
-                    res.redirect("back");
-                }
-            }
-        });
-    } else {
-        res.redirect("back");
-    }
-}
 
 module.exports = router;
