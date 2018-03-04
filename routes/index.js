@@ -31,7 +31,7 @@ router.post("/register", function(req, res){
 // add login route
 // Show login form
 router.get("/login", function(req, res){
-    res.render("login");
+    res.render("login", {message: req.flash("error")});
 });
 // handle login logic
 // app.post("/login", middleware, callback)
