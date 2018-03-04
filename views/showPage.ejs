@@ -22,7 +22,10 @@
                             <p>
                                 <em>页面创建者： <%= restaurant.author.username %></em>
                             </p>
-                            <a class="btn btn-warning" href="/restaurants/<%= restaurant._id %>/edit">编辑内容</a>
+                            <a class="btn btn-xs btn-warning" href="/restaurants/<%= restaurant._id %>/edit">编辑内容</a>
+                            <form id="deleteForm" action="/restaurants/<%= restaurant._id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-xs btn-danger">删除该页面</button>
+                            </form>
                         </div>
                 </div>
                 <div class="well">
