@@ -31,7 +31,7 @@ router.post("/register", function(req, res){
 // add login route
 // Show login form
 router.get("/login", function(req, res){
-    res.render("login", {message: req.flash("error")});
+    res.render("login");
 });
 // handle login logic
 // app.post("/login", middleware, callback)
@@ -46,6 +46,7 @@ router.post("/login", passport.authenticate("local",
 // add logout route
 router.get("/logout", function(req, res){
     req.logout();
+    req.flash("success", "您已退出登陆");
     res.redirect("/restaurants");
 });
 

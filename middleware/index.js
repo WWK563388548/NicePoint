@@ -51,7 +51,7 @@ middlewareObj.isLoggedIn = function(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
-    req.flash("error", "请在登陆后进行此操作。");
+    req.flash("error", "请在登陆后再进行此操作。");
     res.redirect("/login");
 }
 
