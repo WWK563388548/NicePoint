@@ -81,6 +81,7 @@ router.get("/:id", function(req, res){
 // Edit restaurant route
 router.get("/:id/edit", middleware.checkShowPageOwnership, function(req, res){
     Restaurant.findById(req.params.id, function(err, foundRestaurant){
+        req.flash("error", "Restaurant not found.");
         res.render("edit", {restaurant: foundRestaurant});     
     });  
 });

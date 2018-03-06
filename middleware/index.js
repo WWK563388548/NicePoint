@@ -8,6 +8,7 @@ middlewareObj.checkShowPageOwnership = function(req, res, next){
     if(req.isAuthenticated()){
         Restaurant.findById(req.params.id, function(err, foundRestaurant){
             if(err){
+                req.flash("error", "Restaurant not found.");
                 res.redirect("back");
             } else {
                 // Does users own the show page
@@ -16,11 +17,13 @@ middlewareObj.checkShowPageOwnership = function(req, res, next){
                 if(foundRestaurant.author.id.equals(req.user._id)){
                     next();
                 } else {
+                    req.flash("error", "权限不足");
                     res.redirect("back");
                 }
             }
         });
     } else {
+        req.flash("error", "请登陆后再进行此操作。");
         res.redirect("back");
     }
 }
@@ -35,11 +38,13 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
                 if(foundComment.author.id.equals(req.user._id)){
                     next();
                 } else {
+                    req.flash("error", "权限不足");
                     res.redirect("back");
                 }
             }
         });
     } else {
+        req.flash("error", "请登陆后再进行此操作。");
         res.redirect("back");
     }
 }

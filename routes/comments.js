@@ -28,6 +28,7 @@ router.post("/", function(req, res){
             // create new comment
             Comment.create(req.body.comment, function(err, comment){
                 if(err){
+                    req.flash("error", "创建评论失败");
                     console.log(err);
                 } else {
                     // add username and id to comment
@@ -39,6 +40,7 @@ router.post("/", function(req, res){
                     restaurant.comments.push(comment);
                     restaurant.save();
                     // redirect show page
+                    req.flash("success", "创建评论成功");
                     res.redirect("/restaurants/" + restaurant._id);
                 }
             });
@@ -77,6 +79,7 @@ router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, re
        if(err){
            res.redirect("back");
        } else {
+            req.flash("success", "删除评论成功");
            res.redirect("/restaurants/" + req.params.id);
        }
     });
