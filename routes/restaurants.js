@@ -70,8 +70,9 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 router.get("/:id", function(req, res){
     // find the restaurant with provided id
     Restaurant.findById(req.params.id).populate("comments").exec(function(err, foundRestaurant){
-        if(err){
-            console.log("Error: " + err);
+        if(err || !foundRestaurant){
+            req.flash("error", "Restaurant not found");
+            res.redirect("back")
         } else {
             res.render("showPage", {restaurant: foundRestaurant});
         }

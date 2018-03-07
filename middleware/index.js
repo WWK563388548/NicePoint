@@ -7,7 +7,7 @@ var middlewareObj = {};
 middlewareObj.checkShowPageOwnership = function(req, res, next){
     if(req.isAuthenticated()){
         Restaurant.findById(req.params.id, function(err, foundRestaurant){
-            if(err){
+            if(err || !foundRestaurant){
                 req.flash("error", "Restaurant not found.");
                 res.redirect("back");
             } else {
@@ -32,7 +32,8 @@ middlewareObj.checkShowPageOwnership = function(req, res, next){
 middlewareObj.checkCommentOwnership = function(req, res, next){
     if(req.isAuthenticated()){
         Comment.findById(req.params.comment_id, function(err, foundComment){
-            if(err){
+            if(err || !foundComment){
+                req.flash("error", "没有发现评论");
                 res.redirect("back");
             } else {
                 if(foundComment.author.id.equals(req.user._id)){
