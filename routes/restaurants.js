@@ -13,12 +13,11 @@ var middleware = require("../middleware");
 router.get("/", function(req, res){
     // Get all datas from DB
     Restaurant.find({}, function(err, allRestaurants){
-        if(err){
-            console.log("Error: " + err);
-        } else {
-            // console.log(req.user);
-            res.render("index", {restaurantDatas: allRestaurants});
-        }
+       if(err){
+          console.log("Error: " + err);
+       } else {
+          res.render("index", {restaurantDatas: allRestaurants, page: 'restaurants'});
+       }
     });
 });
 

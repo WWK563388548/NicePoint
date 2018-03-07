@@ -12,15 +12,15 @@ router.get("/", function(req, res){
 // Add auth route
 // add register form
 router.get("/register", function(req, res){
-    res.render("register");
-});
+    res.render("register", {page: 'register'}); 
+ });
 // handle register logic
 router.post("/register", function(req, res){
     var newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, function(err, user){
         if(err){
-            req.flash("error", err.message);
-            return res.render("register");
+            console.log(err);
+            return res.render("register", {error: err.message});
         }
         passport.authenticate("local")(req, res, function(){
             req.flash("success", "欢迎来到NicePoint " + user.username);
@@ -32,8 +32,8 @@ router.post("/register", function(req, res){
 // add login route
 // Show login form
 router.get("/login", function(req, res){
-    res.render("login");
-});
+    res.render("login", {page: 'login'}); 
+ });
 // handle login logic
 // app.post("/login", middleware, callback)
 router.post("/login", passport.authenticate("local", 
