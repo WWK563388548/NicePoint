@@ -1,0 +1,89 @@
+body {
+    background-color: #000;
+}
+
+#landing-header {
+  /* all of the elements inside the landing-header div
+   will be in front of the background images */
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  /* view height */
+  padding-top: 40vh;
+}
+
+#landing-header h1 {
+    color: #fff;
+}
+
+/* fit entire screen */
+.slideshow { 
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Styling all of <li>(images) */
+  .slideshow li { 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    animation: imageAnimation 50s linear infinite; 
+  }
+  
+  /* add images */
+  .slideshow li:nth-child(1) { 
+    background-image: url(http://img.jp14.com/uploads/allimg/201703/12/12.jpg) 
+  }
+  .slideshow li:nth-child(2) { 
+    background-image: url(http://img.zhitongcaijing.com/image/20160930/1475242521289235.jpg);
+    animation-delay: 10s; 
+  }
+  .slideshow li:nth-child(3) { 
+    background-image: url(http://img.mp.itc.cn/upload/20170505/9fa9b5764cb1490593abb4992fb62f10_th.jpeg);
+    animation-delay: 20s; 
+  }
+  .slideshow li:nth-child(4) { 
+    background-image: url(http://www.ccchine.com/images/meishi01.jpg);
+    animation-delay: 30s; 
+  }
+  .slideshow li:nth-child(5) { 
+    background-image: url(https://t.alipayobjects.com/images/publichome/T1w9FuXjFaXXb1upjX.jpg);
+    animation-delay: 40s; 
+  }
+
+  /* add keyframes animation */
+  @keyframes imageAnimation { 
+    0% { 
+      opacity: 0; 
+      animation-timing-function: ease-in;
+    }
+    10% {
+      opacity: 1;
+      animation-timing-function: ease-out;
+    }
+    20% {
+      opacity: 1
+    }
+    30% {
+      opacity: 0
+    }
+  }
+
+  /* Older browser support - .no-cssanimations class added by modernizr */
+.no-cssanimations .slideshow li {
+	opacity: 1;
+}
