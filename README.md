@@ -1,5 +1,5 @@
 # NicePoint
-### A web chinese restaurant review application that helps international students to search delicious chinese food in Japan. Users can upload and review new restaurants that they favorite
+### A chinese restaurant review web application that helps international students to search delicious chinese food in Japan. Users can upload and review their favorite restaurants.
 <hr>
 This application was created by: 
 <br>
