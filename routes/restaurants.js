@@ -33,11 +33,12 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     var restaurantName = req.body.restaurantName;
     var imageUrl = req.body.imageUrl;
     var desc = req.body.description;
+    var price = req.body.price;
     var author = {
         id: req.user._id,
         username:req.user.username
     };
-    var newRestaurant = {restaurantName: restaurantName, restaurantImage: imageUrl, description: desc, author:author};
+    var newRestaurant = {restaurantName: restaurantName, restaurantImage: imageUrl, description: desc, price: price, author:author};
     // Create a new restaurant and save to DB
     Restaurant.create(newRestaurant, function(err, newlyCreated){
         if(err){
