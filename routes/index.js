@@ -58,4 +58,16 @@ router.get("/logout", function(req, res){
     res.redirect("/restaurants");
 });
 
+// User's profile
+router.get("/users/:id", function(req, res){
+    User.findById(req.params.id, function(err, foundUser){
+        if(err){
+            req.flash("error", "出错了!");
+            res.redirect("/");
+        }
+
+        res.render("users/show", {user: foundUser});
+    });
+});
+
 module.exports = router;
