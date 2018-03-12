@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
+var Restaurant = require("../models/restaurant");
 
 // Create a landing page
 // root route
@@ -66,7 +67,13 @@ router.get("/users/:id", function(req, res){
             res.redirect("/");
         }
 
-        res.render("users/show", {user: foundUser});
+        Restaurant.find().where('author.id').equals(foundUser._id).exec(function(err, restaurants){
+            if(err){
+                req.flash("error", "出错了!");
+                res.redirect("/");
+            }
+            res.render("users/show", {user: foundUser, restaurants: restaurants});
+        });
     });
 });
 

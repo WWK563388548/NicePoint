@@ -20,7 +20,7 @@
                             <h2><a><%= restaurant.restaurantName %></a></h2>
                             <p><%= restaurant.description %></p>
                             <p>
-                                <em>页面创建者： <%= restaurant.author.username %></em>
+                                <em>页面创建者： <a href="/users/<%= restaurant.author.id %>"><%= restaurant.author.username %></a></em>
                             </p>
                             <% if(currentUser && restaurant.author.id.equals(currentUser._id)){ %>
                                 <a class="btn btn-xs btn-warning" href="/restaurants/<%= restaurant._id %>/edit">编辑内容</a>

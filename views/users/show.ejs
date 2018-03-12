@@ -1,0 +1,22 @@
+<% include ../partials/header.ejs %>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2><%= user.username %>的主页</h2>
+            <div class="thumbnail">
+                <img src="<%= user.avatar %>" alt="头像图片">
+                <div class="caption"><a href="mailto:<%= user.email %>"><%= user.email %></a></div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h3><%= user.username %>的投稿</h3>
+            <ul>
+                <% restaurants.forEach(function(restaurant) { %>
+                    <li><a href="/restaurants/<%= restaurant.id %>"><%= restaurant.restaurantName %></a></li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+
+
+<% include ../partials/footer.ejs %>
