@@ -18,14 +18,17 @@
   },
   "homepage": "https://github.com/WWK563388548/NicePoint#readme",
   "dependencies": {
+    "async": "^2.6.0",
     "body-parser": "^1.18.2",
     "cat-me": "^1.0.3",
     "connect-flash": "^0.1.1",
+    "crypto": "^1.0.1",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "method-override": "^2.3.10",
     "mongoose": "^5.0.7",
+    "nodemailer": "^4.6.3",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.5.0"
