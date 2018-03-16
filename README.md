@@ -3,6 +3,8 @@
 <br>
 
  ![image](screenshot/screenShot1.gif)
+ 
+ Updated in 2018/03/16: added more functions
 <hr>
 This application was created by: 
 <br>
