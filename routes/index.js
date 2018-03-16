@@ -94,8 +94,8 @@ router.get('/forgot', function(req, res) {
           var smtpTransport = nodemailer.createTransport({
             service: 'Gmail', 
             auth: {
-              user: 'NicePointInfo@gmail.com',
-              pass: "wwk4652218"
+              user: 'Your email address',
+              pass: "Your email password"
             }
           });
           // NicePointOfficialInfo@gmail.com
@@ -160,8 +160,8 @@ router.get('/forgot', function(req, res) {
           var smtpTransport = nodemailer.createTransport({
             service: 'Gmail', 
             auth: {
-              user: 'NicePointInfo@gmail.com',
-              pass: 'wwk4652218'
+              user: 'Your email address',
+              pass: 'Your email password'
             }
           });
           var mailOptions = {
