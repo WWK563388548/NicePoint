@@ -21,7 +21,6 @@ This application was created by:
 * HTML
 * CSS
 * BootStrap
-* jQuery
 * JavaScript(ES5, but I will refactor it by ES6 in the future)
 * Node.js(8.9.4)
 * NPM
