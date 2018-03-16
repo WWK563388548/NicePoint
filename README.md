@@ -5,6 +5,15 @@
  ![image](screenshot/screenShot1.gif)
  
  Updated in 2018/03/16: added more functions
+ <br>
+ 
+ <ul>
+   <li> Added function of User's profile </li>
+   <li> Added function of dynamic price </li>
+   <li> Added function of reset password by email when users forgot them password </li>
+ </ul>
+ <br>
+ 
 <hr>
 This application was created by: 
 <br>
