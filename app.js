@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var flash = require("connect-flash");
 var passport = require("passport");
+var moment = require("moment");
 var localStrategy = require("passport-local");
 var methodOverride = require("method-override");
 var Restaurant = require("./models/restaurant");
@@ -24,7 +25,8 @@ app.use(methodOverride("_method"));
 app.use(flash());
 // seed the database
 //seedDB();
-
+moment.locale('zh-cn');
+app.locals.moment = moment;
 // passport figuration
 app.use(require("express-session")({
     secret: "wwk4652218",

@@ -7,6 +7,7 @@ var restaurantSchema = new mongoose.Schema({
     restaurantImage: String,
     description: String,
     //location: String,
+    createdAt: {type: Date, default: Date.now},
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,

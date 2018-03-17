@@ -20,7 +20,7 @@
                             <h2><a><%= restaurant.restaurantName %></a></h2>
                             <p><%= restaurant.description %></p>
                             <p>
-                                <em>页面创建者： <a href="/users/<%= restaurant.author.id %>"><%= restaurant.author.username %></a></em>
+                                <em>页面创建者： <a href="/users/<%= restaurant.author.id %>"><%= restaurant.author.username %>, <%= moment(restaurant.createdAt).fromNow() %></a></em>
                             </p>
                             <% if(currentUser && restaurant.author.id.equals(currentUser._id)){ %>
                                 <a class="btn btn-xs btn-warning" href="/restaurants/<%= restaurant._id %>/edit">编辑内容</a>
@@ -39,7 +39,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <%= comment.author.username %>
-                                <span class="pull-right">1天前</span>
+                                <span class="pull-right"><%= moment(comment.createdAt).fromNow() %></span>
                                 <p>
                                     <%= comment.text %>
                                 </p>
