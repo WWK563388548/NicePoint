@@ -14,7 +14,13 @@
  </ul>
  <br>
  
- Updated in 2018/03/17: Displays time dynamically
+ Updated in 2018/03/17: added more functions
+ <br>
+ 
+ <ul>
+   <li> Added function of displays time dynamically </li>
+   <li> Added footer </li>
+ </ul>
  <br>
 <hr>
 This application was created by: 
