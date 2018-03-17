@@ -5,22 +5,22 @@
         <div style="width: 30%; margin: 25px auto;">
             <form action="/register" method="post">
                 <div class="form-group">
-                    <input class="form-control" type="text" name="username" placeholder="用户名">
+                    <span style="color:red">*</span><input class="form-control" type="text" name="username" placeholder="用户名" required="required">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="密码">
+                    <span style="color:red">*</span><input class="form-control" type="password" name="password" placeholder="密码" required="required">
                 </div>
                 <div class="form-group">
-                        <input class="form-control" type="text" name="firstName" placeholder="名字">
+                    <input class="form-control" type="text" name="firstName" placeholder="名字">
                 </div>
                 <div class="form-group">
-                        <input class="form-control" type="text" name="lastName" placeholder="姓">
+                    <input class="form-control" type="text" name="lastName" placeholder="姓">
                 </div>
                 <div class="form-group">
-                        <input class="form-control" type="email" name="email" placeholder="注册邮箱">
+                    <span style="color:red">*</span><input class="form-control" type="email" name="email" placeholder="注册邮箱" required="required">
                 </div>
                 <div class="form-group">
-                        <input class="form-control" type="text" name="avatar" placeholder="头像图片链接">
+                    <span style="color:red">*</span><input class="form-control" type="text" name="avatar" placeholder="头像图片链接" required="required">
                 </div>
                 <div class="form-group">
                     <button class="btn btn-lg btn-primary btn-block">注册</button>
