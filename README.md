@@ -14,6 +14,8 @@
  </ul>
  <br>
  
+ Updated in 2018/03/17: Displays time dynamically
+ <br>
 <hr>
 This application was created by: 
 <br>
