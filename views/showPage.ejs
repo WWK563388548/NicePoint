@@ -18,6 +18,7 @@
                                 ￥<%= restaurant.price %>／人
                             </h4>
                             <h2><a><%= restaurant.restaurantName %></a></h2>
+                            <h3><%= restaurant.address %></h3>
                             <p><%= restaurant.description %></p>
                             <p>
                                 <em>页面创建者： <a href="/users/<%= restaurant.author.id %>"><%= restaurant.author.username %>, <%= moment(restaurant.createdAt).fromNow() %></a></em>
