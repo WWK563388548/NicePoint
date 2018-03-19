@@ -5,19 +5,19 @@
             <div class="" style="width: 30%; margin: 25px auto;">
                 <form action="/restaurants/<%= restaurant._id %>/?_method=PUT" method="POST">
                     <div class="form-group">
-                        <input class="form-control" type="text" value="<%= restaurant.restaurantName %>" name="restaurant[restaurantName]">
+                        <input class="form-control" type="text" value="<%= restaurant.restaurantName %>" name="restaurant[restaurantName]" placeholder="名字">
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" value="<%= restaurant.restaurantImage %>" name="restaurant[imageUrl]">    
+                        <input class="form-control" type="text" value="<%= restaurant.restaurantImage %>" name="restaurant[imageUrl]" placeholder="图片地址">    
                     </div>
                     <div class="form-group">
-                            <textarea class="form-control" type="text" name="restaurant[description]"><%= restaurant.description %></textarea>   
+                            <textarea class="form-control" type="text" name="restaurant[description]" placeholder="描述"><%= restaurant.description %></textarea>   
                     </div>
                     <div class="form-group">
-                            <input class="form-control" type="text" value="<%= restaurant.address %>" name="restaurant[address]">    
+                            <input class="form-control" type="text" value="<%= restaurant.address %>" name="restaurant[address]" placeholder="所在地址">    
                     </div>
                     <div class="form-group">
-                            <input class="form-control" type="number" value="<%= restaurant.price %>" name="restaurant[price]">    
+                            <input class="form-control" type="number" value="<%= restaurant.price %>" name="restaurant[price]" placeholder="人均消费价格">    
                     </div>
                     <div class="form-group">
                         <button class="btn btn-lg btn-primary btn-block">上传</button>
