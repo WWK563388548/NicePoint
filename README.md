@@ -1,6 +1,8 @@
 # NicePoint
 ### A chinese restaurant review web application that helps international students to search delicious chinese food in Japan. Users can upload and review their favorite restaurants.
 <br>
+※ Add Your email address and password in 'routes/index.js'(Line: 97, 98, 163, 164) for send the mail of reset password
+<br>
 
  ![image](screenshot/screenShot1.gif)
  
@@ -48,5 +50,4 @@ Follow the steps below to build and run this web application:
 `node app.js`  
 * Input the url "http://localhost:8888/" in the web browser
 <hr>
-
 
